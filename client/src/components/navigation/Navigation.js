@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import './Navigation.css';
 
 class Navigation extends Component {
@@ -14,7 +15,7 @@ class Navigation extends Component {
 					</li>
 				)
 			default:
-				return <li><a>Logout</a></li>
+				return <li><a href="/api/logout">Logout</a></li>
 		}	
 	}
 
@@ -22,7 +23,12 @@ class Navigation extends Component {
     	return (
         	<nav>
         	  	<div className="nav-wrapper teal lighten-1">
-				  	<a className="left brand-logo">Tasty Vegan Recipes</a>
+					<Link 
+						to={this.props.auth ? '/recipes' : '/'} 
+					  	className="left brand-logo"
+					>
+					  	Tasty Vegan Recipes
+					</Link>
         	    	<ul className="right">
         	      		{this.renderContent()}
         	    	</ul>
